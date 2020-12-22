@@ -1,3 +1,4 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet *ngIf="this.ready"></ion-router-outlet>
+  <h1 *ngIf="!this.ready">Waiting...</h1>
 </ion-app>

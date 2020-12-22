@@ -15,7 +15,7 @@
 
   <div id="container">
     <ion-list>
-      <ion-item button detail *ngFor="let foodLocation of this.foodLocations" [disabled]="foodLocation.name == 'Netto' ">
+      <ion-item button detail *ngFor="let foodLocation of this.foodLocations" [disabled]="foodLocation.name == 'Netto'" [routerLink]="['/info']" [state]="{location: foodLocation}">
         {{foodLocation.name}}
       </ion-item>
     </ion-list>

@@ -1,9 +1,23 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>info</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Location: {{this.location? this.location.name:""}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngIf="this.location">
+    <ion-card-header>
+      <ion-card-subtitle>{{this.location.category}}</ion-card-subtitle>
+      <ion-card-title>{{this.location.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label>{{this.location.address}}</ion-label>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
