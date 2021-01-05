@@ -1,59 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Store } from '../interfaces/store';
+import { BackendCommunicatorService } from '../services/backend-communicator.service';
+import { AddLocationComponent } from './add-location/add-location.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  foodLocations: Store[] = [
-    {
-      "name": "Five Guys",
-      "address":  "Königsstraße 15",
-      "category": "Burger"
-    },
-    {
-      "name": "Carl's Brauhaus",
-      "address":  "Schlossplatz 7",
-      "category": "Brauhaus"
-    },
-    {
-      "name": "Netto",
-      "address":  "Im Nirwana 777",
-      "category": "Scheißladen"
-    },
-    {
-      "name": "McDonald's",
-      "address":  "Königsstraße 7",
-      "category": "Burger"
-    },
-    {
-      "name": "Hans im Glück",
-      "address":  "Königsstraße 20",
-      "category": "Burger"
-    },
-    {
-      "name": "Kübler",
-      "address":  "Königsstraße 37",
-      "category": "Bäcker"
-    },
-    {
-      "name": "Fritty Bar",
-      "address":  "Rotebühlplatz 8",
-      "category": "Imbiss"
-    },
-    {
-      "name": "LIDL",
-      "address":  "Im Himmel 11",
-      "category": "Bester Laden"
-    },
-    {
-      "name": "ALDI",
-      "address":  "Zur Hölle 999",
-      "category": "Scheißladen"
-    }
-  ]
-  constructor() {}
+export class HomePage implements OnInit{
+  foodLocations: Store[] = [];
+  constructor(private backend: BackendCommunicatorService, private modalController: ModalController) {}
+
+  ngOnInit(){
+    this.loadLocations();
+  }
+  
+  private loadLocations() {
+    this.backend.getLocations().subscribe(
+      data => {this.foodLocations = data},
+      error => {console.log(error)}
+    )
+  }
+
+  async openNewLocationModal(){
+    
+    const modal = await this.modalController.create({
+      component: AddLocationComponent,
+      cssClass: 'my-custom-class'
+    });
+    modal.onWillDismiss().then(res => {
+      console.log("NOT DISMISSED???");
+      if (!res.data.dismissed) {
+        console.log("NOT DISMISSED!!!")
+        this.loadLocations();
+      }
+    })
+    await modal.present();
+  }
 
 }

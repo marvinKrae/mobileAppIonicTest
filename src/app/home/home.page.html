@@ -7,17 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Food Search</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
+    <img src="http://wwidscluster.dhbw-stuttgart.de:8000">
     <ion-list>
       <ion-item button detail *ngFor="let foodLocation of this.foodLocations" [disabled]="foodLocation.name == 'Netto'" [routerLink]="['/info']" [state]="{location: foodLocation}">
         {{foodLocation.name}}
       </ion-item>
     </ion-list>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="this.openNewLocationModal()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -20,7 +20,6 @@ export class InfoPage implements OnInit {
 
   initializeLocation(){
     this.location = history.state.location;
-    console.log(history.state)
     if (!this.location || !(this.location.name)) {
       this.router.navigate(['/home']);
     }

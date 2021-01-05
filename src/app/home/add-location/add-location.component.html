@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Add new location
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="this.dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <form>
+      <h1>Enter new location</h1>
+      <ion-item>
+        <ion-label position="fixed">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="this.tempStoreInput.name" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Category</ion-label>
+        <ion-input type="text" [(ngModel)]="this.tempStoreInput.category" name="category"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Address</ion-label>
+        <ion-input type="text" [(ngModel)]="this.tempStoreInput.address" name="address"></ion-input>
+      </ion-item>
+    </form>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="this.saveLocation()">
+      <ion-icon name="checkmark-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
