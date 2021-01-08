@@ -10,6 +10,7 @@
 </ion-header>
 
 <ion-content>
+  <div id='map' class='location-map'></div>
   <ion-card *ngIf="this.location">
     <ion-card-header>
       <ion-card-subtitle>{{this.location.category}}</ion-card-subtitle>
@@ -20,4 +21,23 @@
         <ion-label>{{this.location.address}}</ion-label>
     </ion-card-content>
   </ion-card>
+  <h1>Comments</h1>
+  <ion-list *ngIf="this.location && this.location.comments">
+    <ion-item *ngFor="let comment of this.location.comments" class="comment">
+      <ion-avatar slot="start">
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        {{comment.name}} -
+        {{comment.time | date: 'd.M.y H:mm'}}
+        <br><br>
+        {{comment.text}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-button class="commentAddBtn" expand="block" (click)="this.clickAddComment()">
+    <ion-icon class="btnIcon" name="chatbubbles"></ion-icon>
+    Add Comment
+  </ion-button>
+  
 </ion-content>

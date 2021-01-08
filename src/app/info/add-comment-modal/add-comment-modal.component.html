@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Write a comment
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="this.dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <form>
+      <h1>Enter your comment</h1>
+      <ion-item>
+        <ion-label position="fixed">Name</ion-label>
+        <ion-input type="text" [(ngModel)]="this.tempComment.name" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea name="comment" [(ngModel)]="this.tempComment.text"></ion-textarea>
+      </ion-item>
+    </form>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="this.saveComment()">
+      <ion-icon name="checkmark-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

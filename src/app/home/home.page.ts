@@ -16,6 +16,10 @@ export class HomePage implements OnInit{
   ngOnInit(){
     this.loadLocations();
   }
+
+  ionViewWillEnter() {
+    this.loadLocations();
+  }
   
   private loadLocations() {
     this.backend.getLocations().subscribe(
